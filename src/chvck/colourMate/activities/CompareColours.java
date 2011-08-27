@@ -6,8 +6,10 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import chvck.colourMate.R;
@@ -19,7 +21,7 @@ public class CompareColours extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.compare);
 	    
-	    ImageView origColourView = new ImageView(this);
+	    ImageView origColourView = (ImageView) findViewById(R.id.originalColourView);
 	    
 	    LinearLayout ll = (LinearLayout) findViewById(R.id.ll_compare);
 
@@ -27,9 +29,9 @@ public class CompareColours extends Activity {
         int[] newColours = extras.getIntArray("colours");
 	    final int origColour = extras.getInt("origColour");
 	    
-	    setViewColour(origColourView, origColour);
+	    setViewColour(origColourView, origColour);    
 	    
-	    ll.addView(origColourView);
+	    //ll.addView(origColourView);
 	    
 	    for (final int newColour : newColours) {
 	    	Log.i("colourmate", newColour + " ");
