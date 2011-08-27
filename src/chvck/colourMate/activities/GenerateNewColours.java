@@ -66,22 +66,61 @@ public class GenerateNewColours extends Activity {
 		}
 
 		for (int i = 0;i < newColours.size();i++) {
+			int[] colours = null;
 			final int newColour = newColours.get(i);
-			
+
 			//setup the new button
 			Button button = new Button(this);
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
 			params.setMargins(10, 2, 10, 0);
+			if (generator.equalsIgnoreCase("triad") || generator.equalsIgnoreCase("splitComp") 
+					|| generator.equalsIgnoreCase("analog")) {
+				colours = new int[2];
+				if (i % 2 == 0) {
+					params.setMargins(10, 8, 10, 0);				
+				} 
+				if (i % 1 == 0 && i != 0){	
+					colours[0] = newColour;
+					colours[1] = newColours.get(i - 1);									
+				} else {
+					colours[0] = newColour;	
+					colours[1] = newColours.get(i + 1);
+				}
+			} else if (generator.equalsIgnoreCase("tetradic") || generator.equalsIgnoreCase("square")) {
+				colours = new int[3];
+				if (i % 3 == 0) {
+					params.setMargins(10, 8, 10, 0);
+				}
+				if (i % 2 == 0 && i != 0) {
+					colours[0] = newColour;
+					colours[1] = newColours.get(i - 1);	
+					colours[2] = newColours.get(i - 2);	
+				} else if (i % 1 == 0 && i != 0) {
+					colours[0] = newColour;
+					colours[1] = newColours.get(i - 1);	
+					colours[2] = newColours.get(i + 1);	
+				} else {
+					colours[0] = newColour;
+					colours[1] = newColours.get(i + 1);	
+					colours[2] = newColours.get(i + 2);	
+				}
+			} else {
+				colours = new int[1];
+				colours[0] = newColour;
+			}
+
 			button.setHeight(40);
 			button.setLayoutParams(params);
 			button.setBackgroundColor(newColour);
 			button.setLongClickable(true);
 
+			final int[] finalColours = colours;
 			button.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					compare(newColour, colour, generator);
+					compare(finalColours, colour, generator);
 				}
 			});
+
 			button.setOnLongClickListener(new OnLongClickListener() {
 				public boolean onLongClick(View v) {
 					select(newColour);
@@ -92,10 +131,10 @@ public class GenerateNewColours extends Activity {
 		}
 	}
 
-	private void compare(int newColour, int origColour, String generator) {
+	private void compare(int[] newColours, int origColour, String generator) {
 		Intent intent = new Intent();
 		intent.setClass(this, chvck.colourMate.activities.CompareColours.class);
-		intent.putExtra("colour", newColour);
+		intent.putExtra("colours", newColours);
 		intent.putExtra("origColour", origColour);
 		startActivityForResult(intent, 0);
 	}

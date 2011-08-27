@@ -1,16 +1,16 @@
 package chvck.colourMate.activities;
 
-import chvck.colourMate.R;
-import chvck.colourMate.R.id;
-import chvck.colourMate.R.layout;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import chvck.colourMate.R;
 
 public class CompareColours extends Activity {
 
@@ -19,28 +19,39 @@ public class CompareColours extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.compare);
 	    
-	    ImageView newColourView = new ImageView(this);
-	    ImageView newColourView2 = new ImageView(this);
 	    ImageView origColourView = new ImageView(this);
 	    
 	    LinearLayout ll = (LinearLayout) findViewById(R.id.ll_compare);
 
         Bundle extras = getIntent().getExtras();
-        int newColour = extras.getInt("colour");
+        int[] newColours = extras.getIntArray("colours");
 	    final int origColour = extras.getInt("origColour");
 	    
-	    newColourView.setBackgroundColor(newColour);
-	    origColourView.setBackgroundColor(origColour);
+	    setViewColour(origColourView, origColour);
 	    
-	    ll.addView(newColourView);
 	    ll.addView(origColourView);
 	    
-	    /*Button button = (Button) findViewById(R.id.select_colour);
-	    button.setOnClickListener(new OnClickListener() {
-	    	public void onClick(View v) {
-			    use(newColour);
-			}
-        });*/
+	    for (final int newColour : newColours) {
+	    	Log.i("colourmate", newColour + " ");
+	    	ImageView imageView = new ImageView(this);
+	    	setViewColour(imageView, newColour);
+	    	
+	    	imageView.setOnClickListener(new OnClickListener() {
+		    	public void onClick(View v) {
+				    use(newColour);
+				}
+	        });
+	    	ll.addView(imageView);
+	    }
+	}
+	
+	private void setViewColour(ImageView view, int colour) {
+		view.setBackgroundColor(colour);
+    	Drawable backgroundRes = view.getBackground();
+		Drawable drawableRes = this.getResources().getDrawable(R.drawable.white_background);
+		Drawable[] drawableLayers = { backgroundRes, drawableRes };
+		LayerDrawable ld = new LayerDrawable(drawableLayers);
+		view.setBackgroundDrawable(ld);
 	}
 	
 	private void use(int colour) {
