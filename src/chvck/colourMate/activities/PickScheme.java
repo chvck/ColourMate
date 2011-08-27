@@ -87,7 +87,7 @@ public class PickScheme extends Activity {
 	
 	//make a simple custom button
 	public class GeneratorButton extends Button {
-		public GeneratorButton(Context context, String buttonText, final String generator, final String angle) {
+		public GeneratorButton(Context context, String buttonText, final String angle, final String generator) {
 			super(context);
 			this.setText(buttonText);
 			this.setOnClickListener(new OnClickListener() {

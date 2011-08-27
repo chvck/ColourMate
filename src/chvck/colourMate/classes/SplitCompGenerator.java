@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import android.graphics.Color;
 
-public class ComplimentaryGenerator extends Generator {
+public class SplitCompGenerator extends Generator {
 
-	public ComplimentaryGenerator(int colourParam, String angleParam) {
+	public SplitCompGenerator(int colourParam, String angleParam) {
 		super(colourParam, angleParam);
 	}
-
+	
 	public ArrayList<Integer> generateNewColours() {
 		float[] hsv = new float[3];
 		Color.RGBToHSV(Color.red(colour), Color.green(colour), Color.blue(colour), hsv);
@@ -18,16 +18,25 @@ public class ComplimentaryGenerator extends Generator {
 		final float value = hsv[2];
 
 		float compliment = getCompliment(hue);
+		
 		int boundary = getBound();
 
 		final int lowerBound = (int) compliment - boundary;
 		final int upperBound = (int) compliment + boundary;
 
 		if (angle.equalsIgnoreCase("exact")) {
-			makeNewColour(compliment, saturation, value);
+			float split1 = compliment + 60;
+			float split2 = compliment - 60;
+			
+			makeNewColour(split1, saturation, value);
+			makeNewColour(split2, saturation, value);
 		} else {
 			for (int i=lowerBound;i<=upperBound;i++) {
-				makeNewColour(i, saturation, value);
+				float split1 = i + 60;
+				float split2 = i - 60;
+				
+				makeNewColour(split1, saturation, value);
+				makeNewColour(split2, saturation, value);
 			}
 		}
 		

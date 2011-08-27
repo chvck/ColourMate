@@ -10,6 +10,7 @@ public class Generator {
 	public Generator(int colourParam, String angleParam){
 		colour = colourParam;
 		angle = angleParam;
+		newColours = new ArrayList<Integer>();
 	}
 	
 	public ArrayList<Integer> generateNewColours() {

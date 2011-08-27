@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import android.graphics.Color;
 
-public class ComplimentaryGenerator extends Generator {
+public class TetradicGenerator extends Generator {
 
-	public ComplimentaryGenerator(int colourParam, String angleParam) {
+	public TetradicGenerator(int colourParam, String angleParam) {
 		super(colourParam, angleParam);
 	}
 
@@ -18,16 +18,24 @@ public class ComplimentaryGenerator extends Generator {
 		final float value = hsv[2];
 
 		float compliment = getCompliment(hue);
+		float adjacent = hue + 60;
+		float adjacentCompliment = getCompliment(adjacent);
+		
 		int boundary = getBound();
-
-		final int lowerBound = (int) compliment - boundary;
-		final int upperBound = (int) compliment + boundary;
 
 		if (angle.equalsIgnoreCase("exact")) {
 			makeNewColour(compliment, saturation, value);
+			makeNewColour(adjacent, saturation, value);
+			makeNewColour(adjacentCompliment, saturation, value);
 		} else {
-			for (int i=lowerBound;i<=upperBound;i++) {
-				makeNewColour(i, saturation, value);
+			for (int i=(-boundary);i<=boundary;i++) {
+				float complimentHue = compliment + i;
+				float adjHue = adjacent + i;
+				float adjacentComplimentHue = adjacentCompliment + i;
+				
+				makeNewColour(complimentHue, saturation, value);
+				makeNewColour(adjHue, saturation, value);
+				makeNewColour(adjacentComplimentHue, saturation, value);
 			}
 		}
 		

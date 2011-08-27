@@ -4,30 +4,34 @@ import java.util.ArrayList;
 
 import android.graphics.Color;
 
-public class ComplimentaryGenerator extends Generator {
+public class TriadicGenerator extends Generator {
 
-	public ComplimentaryGenerator(int colourParam, String angleParam) {
+	public TriadicGenerator(int colourParam, String angleParam) {
 		super(colourParam, angleParam);
 	}
-
+	
 	public ArrayList<Integer> generateNewColours() {
 		float[] hsv = new float[3];
 		Color.RGBToHSV(Color.red(colour), Color.green(colour), Color.blue(colour), hsv);
 		final float hue = hsv[0];
 		final float saturation = hsv[1];
 		final float value = hsv[2];
-
-		float compliment = getCompliment(hue);
-		int boundary = getBound();
-
-		final int lowerBound = (int) compliment - boundary;
-		final int upperBound = (int) compliment + boundary;
+		
+		float compliment1 = hue + 120;
+		float compliment2 = hue - 120;
+		
+		final int bound = getBound();
 
 		if (angle.equalsIgnoreCase("exact")) {
-			makeNewColour(compliment, saturation, value);
+			makeNewColour(compliment1, saturation, value);
+			makeNewColour(compliment2, saturation, value);
 		} else {
-			for (int i=lowerBound;i<=upperBound;i++) {
-				makeNewColour(i, saturation, value);
+			for (int i=(-bound);i<=bound;i++) {
+				float hue1 = compliment1 + i;
+				float hue2 = compliment2 + i;
+				
+				makeNewColour(hue1, saturation, value);
+				makeNewColour(hue2, saturation, value);
 			}
 		}
 		
@@ -53,13 +57,5 @@ public class ComplimentaryGenerator extends Generator {
 		}
 
 		return 0;
-	}
-
-	private float getCompliment(float hue) {
-		if (hue<180) {
-			return (180 + hue);
-		} else {
-			return (hue - 180);
-		}
 	}
 }

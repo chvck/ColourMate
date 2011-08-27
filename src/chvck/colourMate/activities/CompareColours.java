@@ -26,15 +26,13 @@ public class CompareColours extends Activity {
 	    LinearLayout ll = (LinearLayout) findViewById(R.id.ll_compare);
 
         Bundle extras = getIntent().getExtras();
-        int[] newColours = extras.getIntArray("colour");
+        int newColour = extras.getInt("colour");
 	    final int origColour = extras.getInt("origColour");
 	    
-	    newColourView.setBackgroundColor(newColours[0]);
-	    newColourView2.setBackgroundColor(newColours[1]);
+	    newColourView.setBackgroundColor(newColour);
 	    origColourView.setBackgroundColor(origColour);
 	    
 	    ll.addView(newColourView);
-	    ll.addView(newColourView2);
 	    ll.addView(origColourView);
 	    
 	    /*Button button = (Button) findViewById(R.id.select_colour);
