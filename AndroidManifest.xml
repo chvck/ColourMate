@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="chvck.colourMate"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="7" />
+    <uses-permission android:name="android.permission.CAMERA" />
+	<uses-feature android:name="android.hardware.camera" />
+	<uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".activities.ColourMateCamera"
+                  android:label="@string/app_name"
+                  android:configChanges="keyboard|keyboardHidden|orientation"
+                  android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.PickColour" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="chvck.ColourMate.Activites.PickColour" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.SelectedColour" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="chvck.ColourMate.Activites.SelectedColour" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.GeneratorB" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="chvck.ColourMate.Activites.GeneratorB" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.PickScheme" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="chvck.ColourMate.Activites.PickScheme" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.CompareColoursity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="chvck.ColourMate.Activites.CompareColours" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>
