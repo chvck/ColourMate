@@ -13,13 +13,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import chvck.colourMate.R;
-import chvck.colourMate.classes.AnalogGenerator;
-import chvck.colourMate.classes.ComplimentaryGenerator;
-import chvck.colourMate.classes.MonoGenerator;
-import chvck.colourMate.classes.SplitCompGenerator;
-import chvck.colourMate.classes.SquareGenerator;
-import chvck.colourMate.classes.TetradicGenerator;
-import chvck.colourMate.classes.TriadicGenerator;
+import chvck.colourMate.generators.AnalogGenerator;
+import chvck.colourMate.generators.ComplimentaryGenerator;
+import chvck.colourMate.generators.MonoGenerator;
+import chvck.colourMate.generators.SplitCompGenerator;
+import chvck.colourMate.generators.SquareGenerator;
+import chvck.colourMate.generators.TetradicGenerator;
+import chvck.colourMate.generators.TriadicGenerator;
 
 public class GenerateNewColours extends Activity {
 	LinearLayout ll;

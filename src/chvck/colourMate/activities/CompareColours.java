@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import chvck.colourMate.R;
@@ -34,7 +31,6 @@ public class CompareColours extends Activity {
 	    //ll.addView(origColourView);
 	    
 	    for (final int newColour : newColours) {
-	    	Log.i("colourmate", newColour + " ");
 	    	ImageView imageView = new ImageView(this);
 	    	setViewColour(imageView, newColour);
 	    	

@@ -85,6 +85,13 @@ public class PickScheme extends Activity {
 		startActivity(intent);
 	}
 	
+	private void generatorDetails(String generator) {
+		Intent intent = new Intent();
+		intent.setClass(this, chvck.colourMate.activities.GeneratorDetails.class);
+		intent.putExtra("generator", generator);
+		startActivity(intent);
+	}
+	
 	//make a simple custom button
 	public class GeneratorButton extends Button {
 		public GeneratorButton(Context context, String buttonText, final String angle, final String generator) {
@@ -95,6 +102,13 @@ public class PickScheme extends Activity {
 				    generatorPicked(generator, angle);
 				}
 	        });
+			
+			this.setOnLongClickListener(new OnLongClickListener() {
+				public boolean onLongClick(View v) {
+					generatorDetails(generator);
+					return true;
+				} 	
+			});
 		}
 	}
 	

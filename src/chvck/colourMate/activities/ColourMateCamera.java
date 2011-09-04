@@ -17,25 +17,20 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import chvck.colourMate.R;
-import chvck.colourMate.classes.Preview;
+import chvck.colourMate.utils.Preview;
 
 public class ColourMateCamera extends Activity {
-	Preview preview;
-	ProgressDialog dialog;
-	boolean takingPhoto = false;
-	boolean focused = false;
-	boolean flash = false;
-	ImageButton flashButton;
+	private static Preview preview;
+	private ProgressDialog dialog;
+	private boolean takingPhoto = false;
+	private boolean flash = false;
+	private ImageButton flashButton;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,17 +72,6 @@ public class ColourMateCamera extends Activity {
 		capture.requestFocus();
 	}
 
-	private class AutoFocusCallBack implements Camera.AutoFocusCallback {
-		public void onAutoFocus(boolean success, Camera camera) {
-			//update the flag used in onKeyDown()
-			focused = success; 
-			//we don't actually care if the camera has focused, we just want colours not sharp
-			//images
-			setFlash();
-			takePicture();
-		}
-	}
-
 	private void setFlash() {
 		Parameters params = preview.camera.getParameters();
 		if (flash) {
@@ -105,7 +89,7 @@ public class ColourMateCamera extends Activity {
 
 	private void focus() {
 		if (!takingPhoto) {
-			//whilst focusing doesn't really matter we'll still try to do it right
+			//while focusing doesn't really matter we'll still try to do it right
 			String focusMode = preview.camera.getParameters().getFocusMode();
 			if (focusMode != null) {
 				if (focusMode.equalsIgnoreCase(Parameters.FOCUS_MODE_AUTO) || focusMode.equalsIgnoreCase(Parameters.FOCUS_MODE_MACRO)) {				    		
@@ -123,18 +107,8 @@ public class ColourMateCamera extends Activity {
 		}
 	}
 
-	public final boolean onKeyUp(int keyCode, KeyEvent event) {
-		synchronized(this) {
-			if (keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_CAMERA) {
-				focused = false;
-			}
-		}
-		return true;
-	}
-
 	private void takePicture() {
 		takingPhoto = true;
-		focused = false;
 
 		preview.camera.takePicture(null, null, jpegCallback);	  
 	}
@@ -151,9 +125,9 @@ public class ColourMateCamera extends Activity {
 		}
 	};
 
-	//the dialog box to show whilst processing
+	//the dialog box to show while processing
 	@Override
-	protected Dialog onCreateDialog(int id) {
+	public Dialog onCreateDialog(int id) {
 		switch (id) {
 		case 0: {
 			dialog = new ProgressDialog(this);
@@ -166,29 +140,6 @@ public class ColourMateCamera extends Activity {
 		return null;
 	}
 
-	//end the app
-	@Override
-	public void onBackPressed() {
-		finish();
-	}
-
-	//popup for when menu is pressed
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.popup, menu);
-		return true;
-	}
-
-	//handle the options in the popup
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle item selection
-		switch (item.getItemId()) {
-		}
-		return true;
-	}
-
 	protected void loadColourSelection(ArrayList<Integer> colours) {
 		Intent intent = new Intent();
 		intent.setClass(this, chvck.colourMate.activities.PickColour.class);
@@ -196,7 +147,15 @@ public class ColourMateCamera extends Activity {
 		startActivity(intent);
 	}
 
-
+	private class AutoFocusCallBack implements Camera.AutoFocusCallback {
+		public void onAutoFocus(boolean success, Camera camera) {
+			//we don't actually care if the camera has focused, we just want colours not sharp
+			//images
+			setFlash();
+			takePicture();
+		}
+	}
+	
 	//----------------------------------------------------------------------------   
 
 	public class ProcessColoursTask extends AsyncTask<Bitmap, Void, ArrayList<Integer>> { 
@@ -241,7 +200,7 @@ public class ColourMateCamera extends Activity {
 			//get an iterator for the keys in the histogram
 			Collection<Integer> c = colour_freq.keySet();
 			Iterator<Integer> e = c.iterator();
-			final ArrayList<Integer> colours_sorted = new ArrayList<Integer>();
+			ArrayList<Integer> colours_sorted = new ArrayList<Integer>();
 			while (e.hasNext()) {
 				//get the colour
 				int colour = e.next();
