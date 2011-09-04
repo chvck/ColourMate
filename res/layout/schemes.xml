@@ -13,6 +13,14 @@
             android:gravity="center_horizontal" 
             android:layout_gravity="center_horizontal">
        </TextView>
+       <TextView
+            android:layout_width="wrap_content" 
+            android:textAppearance="?android:attr/textAppearanceSmall" 
+            android:text="Long click a scheme for more information" 
+            android:layout_height="wrap_content" 
+            android:gravity="center_horizontal" 
+            android:layout_gravity="center_horizontal">
+       </TextView>
        <GridView 
        android:id="@+id/schemesgridview"
        android:layout_width="fill_parent" 
