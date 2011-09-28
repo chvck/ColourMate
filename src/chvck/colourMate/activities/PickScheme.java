@@ -50,20 +50,20 @@ public class PickScheme extends Activity {
 	    blank.setVisibility(View.INVISIBLE);
 	    	    
 	    //make the buttons
-	    closeMono = new GeneratorButton(this, "Close monochromatic", "narrow", "chrom");
-	    wideMono = new GeneratorButton(this, "Wide monochromatic", "wide", "chrom");
-	    exactComp = new GeneratorButton(this, "Exact complimentary", "exact", "comp");
-	    closeComp = new GeneratorButton(this, "Close complimentary", "close", "comp");
-	    wideComp = new GeneratorButton(this, "Wide complimentary", "wide", "comp");
-	    exactAnalog = new GeneratorButton(this, "Exact analogous", "exact", "analog");
-	    closeAnalog = new GeneratorButton(this, "Close analogous", "close", "analog");
-	    wideAnalog = new GeneratorButton(this, "Wide analogous", "wide", "analog");
+	    closeMono = new GeneratorButton(this, "Close Mono", "close", "chrom");
+	    wideMono = new GeneratorButton(this, "Wide Mono", "wide", "chrom");
+	    exactComp = new GeneratorButton(this, "Exact Comp", "exact", "comp");
+	    closeComp = new GeneratorButton(this, "Close Comp", "close", "comp");
+	    wideComp = new GeneratorButton(this, "Wide Comp", "wide", "comp");
+	    exactAnalog = new GeneratorButton(this, "Exact Analogous", "exact", "analog");
+	    closeAnalog = new GeneratorButton(this, "Close Analogous", "close", "analog");
+	    wideAnalog = new GeneratorButton(this, "Wide Analogous", "wide", "analog");
 	    exactTriad = new GeneratorButton(this, "Exact Triadic", "exact", "triad");
 	    closeTriad = new GeneratorButton(this, "Close Triadic", "close", "triad");
 	    wideTriad = new GeneratorButton(this, "Wide Triadic", "wide", "triad");
-	    exactSplitComp = new GeneratorButton(this, "Exact Split Complimentary", "exact", "splitComp");
-	    closeSplitComp = new GeneratorButton(this, "Close Split Complimentary", "close", "splitComp");
-	    wideSplitComp = new GeneratorButton(this, "Wide Split Complimentary", "wide", "splitComp");
+	    exactSplitComp = new GeneratorButton(this, "Exact Split Comp", "exact", "splitComp");
+	    closeSplitComp = new GeneratorButton(this, "Close Split Comp", "close", "splitComp");
+	    wideSplitComp = new GeneratorButton(this, "Wide Split Comp", "wide", "splitComp");
 	    exactTetradic = new GeneratorButton(this, "Exact Tetradic", "exact", "tetradic");
 	    closeTetradic = new GeneratorButton(this, "Close Tetradic", "close", "tetradic");
 	    wideTetradic = new GeneratorButton(this, "Wide Tetradic", "wide", "tetradic");
@@ -97,6 +97,7 @@ public class PickScheme extends Activity {
 		public GeneratorButton(Context context, String buttonText, final String angle, final String generator) {
 			super(context);
 			this.setText(buttonText);
+			this.setHeight(50);
 			this.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 				    generatorPicked(generator, angle);
