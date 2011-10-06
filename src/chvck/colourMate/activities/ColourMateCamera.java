@@ -1,7 +1,6 @@
 package chvck.colourMate.activities;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -198,10 +197,8 @@ public class ColourMateCamera extends Activity {
 			}
 
 			//get an iterator for the keys in the histogram
-			Collection<Integer> c = colourFreq.keySet();
-			Iterator<Integer> e = c.iterator();
 			ArrayList<Integer> coloursSorted = new ArrayList<Integer>();
-			while (e.hasNext()) {
+			for (Iterator<Integer> e = colourFreq.keySet().iterator(); e.hasNext(); ) {
 				//get the colour
 				int colour = e.next();
 
