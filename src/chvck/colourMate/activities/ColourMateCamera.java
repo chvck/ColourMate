@@ -164,70 +164,70 @@ public class ColourMateCamera extends Activity {
 			//we need to work out a scale in case the bitmap changes the size
 			//of the image taken
 			Bitmap bitmap = bitmapParam[0];
-			int preview_width = preview.getWidth();
-			int preview_height = preview.getHeight();
+			int previewWidth = preview.getWidth();
+			int previewHeight = preview.getHeight();
 
-			int img_width = bitmap.getWidth();
-			int img_height = bitmap.getHeight();
+			int imgWidth = bitmap.getWidth();
+			int imgHeight = bitmap.getHeight();
 
-			float x_scale = (float) img_width / preview_width;
-			float y_scale = (float) img_height / preview_height;
+			float xScale = (float) imgWidth / previewWidth;
+			float yScale = (float) imgHeight / previewHeight;
 
 			//0,0 top left I think
-			float x_distance_from_centre = (20 * x_scale);
-			float y_distance_from_centre = (20 * y_scale);
+			float xDistanceFromCentre = (20 * xScale);
+			float yDistanceFromCentre = (20 * yScale);
 
-			int x = (int) ((img_width/2) - x_distance_from_centre); 
-			int y = (int) ((img_height/2) - y_distance_from_centre); 
-			int width = (int) ((img_width/2) + x_distance_from_centre) - x;
-			int height = (int) ((img_height/2) + y_distance_from_centre) - y;
+			int x = (int) ((imgWidth/2) - xDistanceFromCentre); 
+			int y = (int) ((imgHeight/2) - yDistanceFromCentre); 
+			int width = (int) ((imgWidth/2) + xDistanceFromCentre) - x;
+			int height = (int) ((imgHeight/2) + yDistanceFromCentre) - y;
 			int stride = width;
 			int[] colours = new int[width * height];
 			bitmap.getPixels(colours, 0, stride, x, y, width, height);
 
 
 			//create a hashtable (histogram) of colours and their frequencies
-			HashMap<Integer, Integer> colour_freq = new HashMap<Integer, Integer>();
+			HashMap<Integer, Integer> colourFreq = new HashMap<Integer, Integer>();
 			for (int colour : colours) {
-				if (colour_freq.containsKey(colour)) {
-					int value = (Integer) colour_freq.get(colour);
-					colour_freq.put(colour, value + 1);
+				if (colourFreq.containsKey(colour)) {
+					int value = (Integer) colourFreq.get(colour);
+					colourFreq.put(colour, value + 1);
 				} else {
-					colour_freq.put(colour, 1);
+					colourFreq.put(colour, 1);
 				}
 			}
 
 			//get an iterator for the keys in the histogram
-			Collection<Integer> c = colour_freq.keySet();
+			Collection<Integer> c = colourFreq.keySet();
 			Iterator<Integer> e = c.iterator();
-			ArrayList<Integer> colours_sorted = new ArrayList<Integer>();
+			ArrayList<Integer> coloursSorted = new ArrayList<Integer>();
 			while (e.hasNext()) {
 				//get the colour
 				int colour = e.next();
 
 				//Initialise the values
-				if (colours_sorted.size() == 0) {
-					colours_sorted.add(colour);
+				if (coloursSorted.size() == 0) {
+					coloursSorted.add(colour);
 					continue;
 				}
 
 				//we keep a sorted list so iterate over the sorted array
-				for (int i = 0; i < colours_sorted.size(); i++) {
+				for (int i = 0; i < coloursSorted.size(); i++) {
 					//if the frequency of this colour is higher than the current
 					//sorted element then insert it and remove the last element
 					//in the array 
-					if ((Integer) colour_freq.get(colour) > 
-					(Integer) colour_freq.get(colours_sorted.get(i))) {
-						colours_sorted.add(i, colour);
-						if (colours_sorted.size() >=10) {
-							colours_sorted.remove(colours_sorted.size() - 1);
+					if ((Integer) colourFreq.get(colour) > 
+					(Integer) colourFreq.get(coloursSorted.get(i))) {
+						coloursSorted.add(i, colour);
+						if (coloursSorted.size() >=10) {
+							coloursSorted.remove(coloursSorted.size() - 1);
 						}
 						break;
 					} else {
 						//value isn't higher than any other so whack it on the end
 						//as the array is still too small
-						if (colours_sorted.size() < 10) {
-							colours_sorted.add(colour);
+						if (coloursSorted.size() < 10) {
+							coloursSorted.add(colour);
 							break;
 						}
 					}
@@ -236,9 +236,9 @@ public class ColourMateCamera extends Activity {
 			}
 
 
-			Collections.sort(colours_sorted);
+			Collections.sort(coloursSorted);
 
-			return colours_sorted;
+			return coloursSorted;
 		}
 
 		protected void onPostExecute(ArrayList<Integer> colours) {
