@@ -1,9 +1,10 @@
 package chvck.colourMate.activities;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -187,6 +188,9 @@ public class ColourMateCamera extends Activity {
 
 			//create a hashtable (histogram) of colours and their frequencies
 			HashMap<Integer, Integer> colourFreq = new HashMap<Integer, Integer>();
+			ValueComparator bvc =  new ValueComparator(colourFreq);
+	        TreeMap<Integer, Integer> coloursSorted = new TreeMap<Integer, Integer>(bvc);
+	        
 			for (int colour : colours) {
 				if (colourFreq.containsKey(colour)) {
 					int value = (Integer) colourFreq.get(colour);
@@ -195,52 +199,35 @@ public class ColourMateCamera extends Activity {
 					colourFreq.put(colour, 1);
 				}
 			}
+			
+			coloursSorted.putAll(colourFreq);
 
-			//get an iterator for the keys in the histogram
-			ArrayList<Integer> coloursSorted = new ArrayList<Integer>();
-			for (Iterator<Integer> e = colourFreq.keySet().iterator(); e.hasNext(); ) {
-				//get the colour
-				int colour = e.next();
-
-				//Initialise the values
-				if (coloursSorted.size() == 0) {
-					coloursSorted.add(colour);
-					continue;
-				}
-
-				//we keep a sorted list so iterate over the sorted array
-				for (int i = 0; i < coloursSorted.size(); i++) {
-					//if the frequency of this colour is higher than the current
-					//sorted element then insert it and remove the last element
-					//in the array 
-					if ((Integer) colourFreq.get(colour) > 
-					(Integer) colourFreq.get(coloursSorted.get(i))) {
-						coloursSorted.add(i, colour);
-						if (coloursSorted.size() >=10) {
-							coloursSorted.remove(coloursSorted.size() - 1);
-						}
-						break;
-					} else {
-						//value isn't higher than any other so whack it on the end
-						//as the array is still too small
-						if (coloursSorted.size() < 10) {
-							coloursSorted.add(colour);
-							break;
-						}
-					}
-				}
-
-			}
-
-
-			Collections.sort(coloursSorted);
-
-			return coloursSorted;
+			ArrayList<Integer> topColours = new ArrayList<Integer>(coloursSorted.headMap(10).keySet());	
+			
+			return topColours;
 		}
 
 		protected void onPostExecute(ArrayList<Integer> colours) {
 			removeDialog(0);
 			loadColourSelection(colours);
 		}
+	}
+	
+	private class ValueComparator implements Comparator<Integer> {
+
+		  Map<Integer, Integer> base;
+		  public ValueComparator(Map<Integer, Integer> base) {
+		      this.base = base;
+		  }
+
+		  public int compare(Integer a, Integer b) {
+			  if((Integer)base.get(a) < (Integer)base.get(b)) {
+			      return 1;
+			  } else if((Integer)base.get(a) == (Integer)base.get(b)) {
+			      return 0;
+			  } else {
+			      return -1;
+			  }
+		  }
 	}
 }

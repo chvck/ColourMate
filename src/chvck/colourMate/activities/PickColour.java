@@ -124,7 +124,4 @@ public class PickColour extends Activity {
 			return button;
 		}
 	}
-
-
-
 }
