@@ -71,7 +71,7 @@ public class GeneratorDetails extends Activity {
 	    	details.setText("Analogous colors are colors that are adjacent to each other on the color wheel. " +
 	    			"Analogous color schemes are often found in nature and are pleasing to the eye. " +
 	    			"The combination of these colors give a bright and cheery effect in the area, and are able " +
-	    			"to accommodate many changing moods. When using the analogous color scheme, one should " +
+	    			"to accommodate many changing moods. When using the analogous color scheme, you should " +
 	    			"make sure there is one hue as the main color. Try to avoid combining warm and cold colours " +
 	    			"in this scheme");
 	    	ImageView example = new ImageView(this);

@@ -1,7 +1,6 @@
 package chvck.colourMate.activities;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -207,9 +206,10 @@ public class ColourMateCamera extends Activity {
 						
 			HashMap<Integer, Integer> coloursSorted = new HashMap<Integer, Integer>();
 			coloursSorted = sortHashMap(colourFreq);
-						
+			
 			ArrayList<Integer> sorted = new ArrayList<Integer>(coloursSorted.keySet());
-			ArrayList<Integer> topColours = new ArrayList<Integer>(sorted.subList(sorted.size() - 11, sorted.size() - 1));
+			Integer end = sorted.size() > 10 ? 10 : sorted.size();
+			ArrayList<Integer> topColours = new ArrayList<Integer>(sorted.subList(0, end));
 			
 			return topColours;
 		}
@@ -220,6 +220,7 @@ public class ColourMateCamera extends Activity {
 		}
 	}
 	
+	//not yet convinced this method isn't horrible
 	private HashMap<Integer, Integer> sortHashMap(HashMap<Integer, Integer> input){
 	    Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
 	    for (Integer wsState : input.keySet()){
@@ -232,29 +233,10 @@ public class ColourMateCamera extends Activity {
 	    TreeSet<Integer> sortedSet = new TreeSet<Integer>(mapValues);
 	    Object[] sortedArray = sortedSet.toArray();
 	    int size = sortedArray.length;
-	    for (int i=0; i<size; i++){
+	    for (int i=size-1; i>=0; i--){
 	        sortedMap.put(mapKeys.get(mapValues.indexOf(sortedArray[i])), 
 	                      (Integer)sortedArray[i]);
 	    }
 	    return sortedMap;
-	}
-	
-	private class ValueComparator implements Comparator {
-
-		Map base;
-		public ValueComparator(Map base) {
-			this.base = base;
-		}
-
-		public int compare(Object a, Object b) {
-		
-			if((Integer)base.get(a) < (Integer)base.get(b)) {
-			  return 1;
-			} else if((Integer)base.get(a) == (Integer)base.get(b)) {
-			  return 0;
-			} else {
-			  return -1;
-			}
-		}
 	}
 }
