@@ -3,8 +3,10 @@ package chvck.colourMate.activities;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.TreeSet;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -17,6 +19,7 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -188,8 +191,8 @@ public class ColourMateCamera extends Activity {
 
 			//create a hashtable (histogram) of colours and their frequencies
 			HashMap<Integer, Integer> colourFreq = new HashMap<Integer, Integer>();
-			ValueComparator bvc =  new ValueComparator(colourFreq);
-	        TreeMap<Integer, Integer> coloursSorted = new TreeMap<Integer, Integer>(bvc);
+			//ValueComparator bvc =  new ValueComparator(colourFreq);
+	        //TreeMap<Integer, Integer> coloursSorted = new TreeMap<Integer, Integer>();
 	        
 			for (int colour : colours) {
 				if (colourFreq.containsKey(colour)) {
@@ -200,9 +203,13 @@ public class ColourMateCamera extends Activity {
 				}
 			}
 			
-			coloursSorted.putAll(colourFreq);
-
-			ArrayList<Integer> topColours = new ArrayList<Integer>(coloursSorted.headMap(10).keySet());	
+			//coloursSorted.putAll(colourFreq);
+						
+			HashMap<Integer, Integer> coloursSorted = new HashMap<Integer, Integer>();
+			coloursSorted = sortHashMap(colourFreq);
+						
+			ArrayList<Integer> sorted = new ArrayList<Integer>(coloursSorted.keySet());
+			ArrayList<Integer> topColours = new ArrayList<Integer>(sorted.subList(sorted.size() - 11, sorted.size() - 1));
 			
 			return topColours;
 		}
@@ -213,21 +220,41 @@ public class ColourMateCamera extends Activity {
 		}
 	}
 	
-	private class ValueComparator implements Comparator<Integer> {
+	private HashMap<Integer, Integer> sortHashMap(HashMap<Integer, Integer> input){
+	    Map<Integer, Integer> tempMap = new HashMap<Integer, Integer>();
+	    for (Integer wsState : input.keySet()){
+	        tempMap.put(wsState,input.get(wsState));
+	    }
 
-		  Map<Integer, Integer> base;
-		  public ValueComparator(Map<Integer, Integer> base) {
-		      this.base = base;
-		  }
+	    List<Integer> mapKeys = new ArrayList<Integer>(tempMap.keySet());
+	    List<Integer> mapValues = new ArrayList<Integer>(tempMap.values());
+	    HashMap<Integer, Integer> sortedMap = new LinkedHashMap<Integer, Integer>();
+	    TreeSet<Integer> sortedSet = new TreeSet<Integer>(mapValues);
+	    Object[] sortedArray = sortedSet.toArray();
+	    int size = sortedArray.length;
+	    for (int i=0; i<size; i++){
+	        sortedMap.put(mapKeys.get(mapValues.indexOf(sortedArray[i])), 
+	                      (Integer)sortedArray[i]);
+	    }
+	    return sortedMap;
+	}
+	
+	private class ValueComparator implements Comparator {
 
-		  public int compare(Integer a, Integer b) {
-			  if((Integer)base.get(a) < (Integer)base.get(b)) {
-			      return 1;
-			  } else if((Integer)base.get(a) == (Integer)base.get(b)) {
-			      return 0;
-			  } else {
-			      return -1;
-			  }
-		  }
+		Map base;
+		public ValueComparator(Map base) {
+			this.base = base;
+		}
+
+		public int compare(Object a, Object b) {
+		
+			if((Integer)base.get(a) < (Integer)base.get(b)) {
+			  return 1;
+			} else if((Integer)base.get(a) == (Integer)base.get(b)) {
+			  return 0;
+			} else {
+			  return -1;
+			}
+		}
 	}
 }
