@@ -25,7 +25,12 @@ public class CompareColours extends ColourActivity {
         int[] newColours = extras.getIntArray("colours");
 	    final int origColour = extras.getInt("origColour");
 	    
-	    setViewColour(origColourView, origColour);    
+	    setViewColour(origColourView, origColour);   
+	    origColourView.setOnClickListener(new OnClickListener() {
+	    	public void onClick(View v) {
+			    use(origColour);
+			}
+        }); 
 	    
 	    //ll.addView(origColourView);
 	    

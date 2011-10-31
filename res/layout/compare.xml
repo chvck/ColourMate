@@ -12,6 +12,10 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" 
                 android:text="Compare Colours" android:gravity="center_horizontal" android:layout_height="wrap_content">
             </TextView>
+            <TextView android:layout_width="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceSmall" 
+                android:text="Select a colour to view info" android:gravity="center_horizontal" android:layout_height="wrap_content">
+            </TextView>
 		    <LinearLayout 
 		        android:orientation="horizontal"  
 		        android:layout_width="fill_parent"

@@ -16,7 +16,7 @@
        <TextView
             android:layout_width="wrap_content" 
             android:textAppearance="?android:attr/textAppearanceSmall" 
-            android:text="Long click a scheme for details" 
+            android:text="Long press a scheme for details" 
             android:layout_height="wrap_content" 
             android:gravity="center_horizontal" 
             android:layout_gravity="center_horizontal">
