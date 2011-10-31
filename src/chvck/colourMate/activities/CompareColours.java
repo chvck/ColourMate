@@ -1,6 +1,5 @@
 package chvck.colourMate.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -11,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import chvck.colourMate.R;
 
-public class CompareColours extends Activity {
+public class CompareColours extends ColourActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

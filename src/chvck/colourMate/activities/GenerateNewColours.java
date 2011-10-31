@@ -2,7 +2,6 @@ package chvck.colourMate.activities;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +20,7 @@ import chvck.colourMate.generators.SquareGenerator;
 import chvck.colourMate.generators.TetradicGenerator;
 import chvck.colourMate.generators.TriadicGenerator;
 
-public class GenerateNewColours extends Activity {
+public class GenerateNewColours extends ColourActivity {
 	LinearLayout ll;
 
 	@Override

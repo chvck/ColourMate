@@ -1,8 +1,9 @@
 package chvck.colourMate.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import chvck.colourMate.R;
 
-public class SelectedColour extends Activity {
+public class SelectedColour extends ColourActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,15 @@ public class SelectedColour extends Activity {
 		final int colour = extras.getInt("colour");
 
 		Button button = (Button) findViewById(R.id.selectGenerators);
+		button.getBackground().setColorFilter(0xFFFFFFFF, PorterDuff.Mode.DST);
+		button.setTextColor(Color.BLACK);
+		button.setTypeface(null, Typeface.BOLD);
 		button.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				schemes(colour);
 			}
 		});
+		
 
 		colourBox.setBackgroundColor(colour);
 
@@ -53,7 +58,10 @@ public class SelectedColour extends Activity {
 
 		//work out what base colour it is
 		String actualColour = "";
-		if (hsv[0] >=0 && hsv[0] <60) {
+		if (hsv[0] == 0) {
+			actualColour = "It's Black!";
+		}
+		else if (hsv[0] >=1 && hsv[0] <60) {
 			actualColour = "Red";
 		} else if (hsv[0] >=60 && hsv[0] <120) {
 			actualColour = "Yellow";

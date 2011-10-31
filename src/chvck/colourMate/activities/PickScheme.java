@@ -1,8 +1,10 @@
 package chvck.colourMate.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import chvck.colourMate.R;
 
-public class PickScheme extends Activity {
+public class PickScheme extends ColourActivity {
 	public Button closeMono;
 	public Button wideMono;
 	public Button exactComp;
@@ -98,6 +100,9 @@ public class PickScheme extends Activity {
 			super(context);
 			this.setText(buttonText);
 			this.setHeight(50);
+			this.getBackground().setColorFilter(0xFFFFFFFF, PorterDuff.Mode.DST);
+			this.setTextColor(Color.BLACK);
+			this.setTypeface(null, Typeface.BOLD);
 			this.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 				    generatorPicked(generator, angle);

@@ -12,12 +12,10 @@ public final class R {
     }
     public static final class drawable {
         public static final int flash=0x7f020000;
-        public static final int flash_pressed=0x7f020001;
-        public static final int icon=0x7f020002;
-        public static final int no_flash=0x7f020003;
-        public static final int no_flash_pressed=0x7f020004;
-        public static final int white_background=0x7f020005;
-        public static final int white_background_small=0x7f020006;
+        public static final int icon=0x7f020001;
+        public static final int no_flash=0x7f020002;
+        public static final int white_background=0x7f020003;
+        public static final int white_background_small=0x7f020004;
     }
     public static final class id {
         public static final int baseLabel=0x7f060011;
@@ -40,6 +38,7 @@ public final class R {
         public static final int intValue=0x7f06001a;
         public static final int layout=0x7f060008;
         public static final int ll_compare=0x7f060001;
+        public static final int new_colour=0x7f06001c;
         public static final int originalColourView=0x7f060000;
         public static final int preview=0x7f060009;
         public static final int rgbLabel=0x7f060015;

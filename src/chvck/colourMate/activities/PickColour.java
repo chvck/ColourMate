@@ -2,16 +2,12 @@ package chvck.colourMate.activities;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -20,7 +16,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import chvck.colourMate.R;
 
-public class PickColour extends Activity {
+public class PickColour extends ColourActivity {
 	protected ProgressDialog dialog;
 	public ArrayList<Integer> colours;
 	public Context context = this;
@@ -52,21 +48,7 @@ public class PickColour extends Activity {
 			finish();
 		}
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.popup, menu);
-		return true;
-	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle item selection
-		switch (item.getItemId()) {
-		}
-		return true;
-	}
 
 	//----------------------------------------------------------------------------
 	

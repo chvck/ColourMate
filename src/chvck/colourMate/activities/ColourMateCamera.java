@@ -18,9 +18,9 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -38,7 +38,8 @@ public class ColourMateCamera extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		
 		//setup the surface for the camera preview
 		preview = new Preview(this);
 		((FrameLayout) findViewById(R.id.preview)).addView(preview);
@@ -61,11 +62,12 @@ public class ColourMateCamera extends Activity {
 			}
 		});
 
-		Button capture = (Button) findViewById(R.id.buttonCapture);
+		final Button capture = (Button) findViewById(R.id.buttonCapture);
 		//make it look pretty by adding transparency
-		capture.getBackground().setAlpha(150);
+		capture.getBackground().setAlpha(175);
 		capture.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) { 
+				capture.setEnabled(false);
 				focus();
 			}
 		});
@@ -201,9 +203,7 @@ public class ColourMateCamera extends Activity {
 					colourFreq.put(colour, 1);
 				}
 			}
-			
-			//coloursSorted.putAll(colourFreq);
-						
+									
 			HashMap<Integer, Integer> coloursSorted = new HashMap<Integer, Integer>();
 			coloursSorted = sortHashMap(colourFreq);
 			
