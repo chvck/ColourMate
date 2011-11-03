@@ -8,9 +8,14 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -30,9 +35,10 @@ import chvck.colourMate.utils.Preview;
 public class ColourMateCamera extends Activity {
 	private static Preview preview;
 	private ProgressDialog dialog;
-	private boolean takingPhoto = false;
 	private boolean flash = false;
 	private ImageButton flashButton;
+	private Button capture;
+	private int level;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,10 @@ public class ColourMateCamera extends Activity {
 		//setup the surface for the camera preview
 		preview = new Preview(this);
 		((FrameLayout) findViewById(R.id.preview)).addView(preview);
+		
+		//setup to receive battery level
+		this.registerReceiver(this.mBatInfoReceiver, 
+			    new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
 		flashButton = (ImageButton) findViewById(R.id.flash);
 		//make it look pretty by adding transparency
@@ -56,17 +66,20 @@ public class ColourMateCamera extends Activity {
 					flash = false;
 					flashButton.setBackgroundResource(R.drawable.no_flash);
 				} else {
+					if (level <= 15) {
+						showDialog(1);
+					}
 					flash = true;
 					flashButton.setBackgroundResource(R.drawable.flash);
 				}
 			}
 		});
 
-		final Button capture = (Button) findViewById(R.id.buttonCapture);
+		capture = (Button) findViewById(R.id.buttonCapture);
 		//make it look pretty by adding transparency
 		capture.getBackground().setAlpha(175);
 		capture.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) { 
+			public void onClick(View v) {
 				capture.setEnabled(false);
 				focus();
 			}
@@ -92,8 +105,8 @@ public class ColourMateCamera extends Activity {
 	}
 
 	private void focus() {
-		if (!takingPhoto) {
-			//while focusing doesn't really matter we'll still try to do it right
+		//while focusing doesn't really matter we'll still try to do it right
+		try {
 			String focusMode = preview.camera.getParameters().getFocusMode();
 			if (focusMode != null) {
 				if (focusMode.equalsIgnoreCase(Parameters.FOCUS_MODE_AUTO) || focusMode.equalsIgnoreCase(Parameters.FOCUS_MODE_MACRO)) {				    		
@@ -108,42 +121,60 @@ public class ColourMateCamera extends Activity {
 				takePicture();
 
 			}
+		} catch (RuntimeException re ) {
+			//don't care if this has failed really
 		}
 	}
 
 	private void takePicture() {
-		takingPhoto = true;
-
 		preview.camera.takePicture(null, null, jpegCallback);	  
 	}
 
 	// Handles data for jpeg picture
 	PictureCallback jpegCallback = new PictureCallback() { // <8>
 		public void onPictureTaken(byte[] data, Camera camera) {
+			capture.setEnabled(true);
 			//get the data
 			Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 			showDialog(0);
-			takingPhoto = false;
 			//process the colours, we don't need a handle on this task
 			new ProcessColoursTask().execute(bitmap);
 		}
+	};
+	
+	private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver(){
+	    @Override
+	    public void onReceive(Context context, Intent intent) {	        
+	        level = intent.getIntExtra("level", 0);	        
+	    }
 	};
 
 	//the dialog box to show while processing
 	@Override
 	public Dialog onCreateDialog(int id) {
 		switch (id) {
-		case 0: {
-			dialog = new ProgressDialog(this);
-			dialog.setMessage("Processing colours...");
-			dialog.setIndeterminate(true);
-			dialog.setCancelable(true);
-			return dialog;
-		} 
+			case 0: {
+				dialog = new ProgressDialog(this);
+				dialog.setMessage("Processing colours...");
+				dialog.setIndeterminate(true);
+				dialog.setCancelable(true);
+				return dialog;
+			} 
+			case 1: {
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("Battery level low - Flash may not fire")
+				       .setCancelable(false)
+				       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				           }
+				       });
+				AlertDialog alert = builder.create();
+				return alert;
+			}
 		}
 		return null;
 	}
-
+	
 	protected void loadColourSelection(ArrayList<Integer> colours) {
 		Intent intent = new Intent();
 		intent.setClass(this, chvck.colourMate.activities.PickColour.class);
