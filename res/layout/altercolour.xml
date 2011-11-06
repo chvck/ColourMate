@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+     <TableLayout 
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent">
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip">
+            <TextView android:layout_width="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceMedium" 
+                android:text="Alter Colour" android:gravity="center_horizontal" android:layout_height="wrap_content">
+            </TextView>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip">
+            <ImageView 
+                android:layout_marginTop="7dip"
+                android:layout_width="100dip" 
+                android:layout_height="50dip" 
+                android:id="@+id/alterColourBox" >
+            </ImageView>
+        </TableRow>  
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip">
+            <TextView 
+                android:id="@+id/labelHue" 
+                android:textAppearance="?android:attr/textAppearanceSmall" 
+                android:text="Hue"  android:gravity="center_horizontal">
+            </TextView>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <LinearLayout 
+				android:orientation="horizontal"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+	            <ImageButton 
+	                android:layout_height="wrap_content" 
+	                android:src="@drawable/left_arrow" 
+	                android:id="@+id/imageButton1" 
+	                android:layout_width="wrap_content">
+	            </ImageButton>
+	            <EditText 
+	               android:id="@+id/hueValue" 
+	               android:layout_height="wrap_content" 
+	               android:layout_weight="1" android:editable="false" android:layout_width="65dip">
+	            </EditText>
+                <ImageButton 
+                    android:layout_height="wrap_content" 
+                    android:src="@drawable/right_arrow" 
+                    android:id="@+id/imageButton2" 
+                    android:layout_width="wrap_content">
+                </ImageButton>
+            </LinearLayout>
+        </TableRow> 
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip">
+            <TextView 
+                android:id="@+id/labelSat" 
+                android:textAppearance="?android:attr/textAppearanceSmall" 
+                android:text="Saturation"  android:gravity="center_horizontal">
+            </TextView>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <LinearLayout 
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageButton 
+                    android:layout_height="wrap_content" 
+                    android:src="@drawable/left_arrow" 
+                    android:id="@+id/imageButton3" 
+                    android:layout_width="wrap_content">
+                </ImageButton>
+                <EditText 
+                   android:id="@+id/satValue" 
+                   android:layout_height="wrap_content" 
+                   android:layout_weight="1" android:editable="false" android:layout_width="65dip">
+                </EditText>
+                <ImageButton 
+                    android:layout_height="wrap_content" 
+                    android:src="@drawable/right_arrow" 
+                    android:id="@+id/imageButton4" 
+                    android:layout_width="wrap_content">
+                </ImageButton>
+            </LinearLayout>
+        </TableRow>  
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip">
+            <TextView 
+                android:id="@+id/labelValue" 
+                android:textAppearance="?android:attr/textAppearanceSmall" 
+                android:text="Value"  android:gravity="center_horizontal">
+            </TextView>
+        </TableRow>
+        <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <LinearLayout 
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageButton 
+                    android:layout_height="wrap_content" 
+                    android:src="@drawable/left_arrow" 
+                    android:id="@+id/imageButton5" 
+                    android:layout_width="wrap_content">
+                </ImageButton>
+                <EditText 
+                   android:id="@+id/valueValue" 
+                   android:layout_height="wrap_content" 
+                   android:layout_weight="1" android:editable="false" android:layout_width="65dip">
+                </EditText>
+                <ImageButton 
+                    android:layout_height="wrap_content" 
+                    android:src="@drawable/right_arrow" 
+                    android:id="@+id/imageButton6" 
+                    android:layout_width="wrap_content">
+                </ImageButton>
+            </LinearLayout>
+        </TableRow>    
+        <TableRow android:layout_gravity="center_horizontal" android:layout_marginTop="15dip"  android:gravity="center_horizontal">
+            <Button 
+                android:id="@+id/useColour"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Use Colour" 
+                android:layout_marginTop="7dip">
+            </Button>
+        </TableRow>
+    </TableLayout>
+</ScrollView>

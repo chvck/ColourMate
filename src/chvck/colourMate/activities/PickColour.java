@@ -38,7 +38,7 @@ public class PickColour extends ColourActivity {
 
 	public void selectColour(int colour) {
 		Intent intent = new Intent();
-		intent.setClass(this, chvck.colourMate.activities.SelectedColour.class);
+		intent.setClass(this, chvck.colourMate.activities.AlterColour.class);
 		intent.putExtra("colour", colour);
 		startActivityForResult(intent, 0);
 	}

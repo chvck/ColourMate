@@ -10,9 +10,8 @@ import android.hardware.Camera;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class Preview extends SurfaceView implements SurfaceHolder.Callback { // <1>
+public class Preview extends SurfaceView implements SurfaceHolder.Callback { 
 	protected final Paint rectanglePaint = new Paint();
-
 	SurfaceHolder mHolder;  
 	public Camera camera; 
 
@@ -21,11 +20,11 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback { // 
 
 		// Install a SurfaceHolder.Callback so we get notified when the
 		// underlying surface is created and destroyed.
-		mHolder = getHolder();  // <4>
-		mHolder.addCallback(this);  // <5>
-		mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS); // <6>
+		mHolder = getHolder();  
+		mHolder.addCallback(this);  
+		mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 	}
-
+	  
 	// Called once the holder is ready
 	public void surfaceCreated(SurfaceHolder holder) {
 		// The Surface has been created, acquire the camera and tell it where
@@ -59,8 +58,9 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback { // 
 	// Called when holder has changed
 	public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) { // <15>
 		Camera.Parameters parameters = camera.getParameters();
-
-
+        parameters.setPreviewSize(w, h);
+        requestLayout();
+        
 		camera.setParameters(parameters);
 		camera.startPreview();
 	}
