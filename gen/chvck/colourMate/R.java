@@ -33,6 +33,7 @@ public final class R {
         public static final int generator_box=0x7f060012;
         public static final int generator_layout=0x7f060011;
         public static final int generator_scroll=0x7f060010;
+        public static final int help=0x7f06002b;
         public static final int hexLabel=0x7f060021;
         public static final int hexValue=0x7f060022;
         public static final int hsvLabel=0x7f060025;

@@ -10,8 +10,9 @@ import android.view.MenuItem;
 import chvck.colourMate.R;
 
 public class ColourActivity extends Activity {
+	protected String helpTitle;
+	protected String helpBody;
 	
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
@@ -26,14 +27,30 @@ public class ColourActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
-		newColour(this);
-		return true;
+		switch (item.getItemId()) {
+			case R.id.new_colour:
+				newColour(this);
+				return true;
+			case R.id.help:
+				loadHelp(this);
+				return true;
+		    default:
+		        return super.onOptionsItemSelected(item);
+		}
 	}
 	
-	public static void newColour(Context contextParam){
+	protected void newColour(Context contextParam){
 		Intent intent = new Intent();
 		intent.setClass(contextParam, chvck.colourMate.activities.ColourMateCamera.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		contextParam.startActivity(intent);
+	}
+	
+	protected void loadHelp(Context contextParam) {
+		Intent intent = new Intent();
+		intent.setClass(contextParam, chvck.colourMate.activities.ColourMateCamera.class);
+		intent.putExtra("title", helpTitle);
+		intent.putExtra("body", helpBody);
 		contextParam.startActivity(intent);
 	}
 }

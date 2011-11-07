@@ -76,6 +76,14 @@ public class PickScheme extends ColourActivity {
 	    //setup the grid
 	    GridView gridview = (GridView) findViewById(R.id.schemesgridview);
         gridview.setAdapter(new ButtonAdapter(this));     
+		
+		helpTitle = "Selecting a scheme generator";
+		helpBody = "There are a number of colour scheme generators and each one provides a different " +
+				"set of colours to go with the one that you have selected. For more information on " +
+				"each scheme type long press on the relevant button.\n The exact matches provide a colour " +
+				"scheme that exactly match the colour you have selected.\n Close matchs provide a number of schemes " +
+				"that are near to exact matches.\n Wide matches provide a number of schemes that deviate further " +
+				"from being exact matches.";
 	}
 	
 	protected void generatorPicked(String generator, String angle) {

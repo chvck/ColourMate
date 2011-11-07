@@ -128,6 +128,10 @@ public class GenerateNewColours extends ColourActivity {
 			});
 			ll.addView(button);
 		}
+		
+		helpTitle = "Selecting a scheme";
+		helpBody = "Colours are grouped into schemes, when a colour is selected a new screen will display " +
+				"showing all the colours in that scheme.";
 	}
 
 	private void compare(int[] newColours, int origColour, String generator) {

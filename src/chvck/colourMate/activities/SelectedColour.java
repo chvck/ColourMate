@@ -81,7 +81,9 @@ public class SelectedColour extends ColourActivity {
 		rgbValue.setText(Color.red(colour) + "," + Color.green(colour) + "," + Color.blue(colour));
 		hsvValue.setText(Math.round(hsv[0]) + "," + Round(hsv[1], 2) + "," + Round(hsv[2], 2));
 		intValue.setText("" + colour);
-
+		
+		helpTitle = "The colour you have selected";
+		helpBody = "Here you can view some of the properties of the colour that you have selected.";
 	}
 
 	private void schemes(int colour) {

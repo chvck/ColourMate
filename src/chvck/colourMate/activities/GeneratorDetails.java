@@ -1,5 +1,6 @@
 package chvck.colourMate.activities;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -7,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import chvck.colourMate.R;
 
-public class GeneratorDetails extends ColourActivity {
+public class GeneratorDetails extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -110,7 +111,7 @@ public class GeneratorDetails extends ColourActivity {
 	    	example.setMinimumWidth(15);
 	    	layout.addView(example);
 	    }
-	    
+		
 	}
 	
 }

@@ -95,6 +95,9 @@ public class AlterColour extends ColourActivity {
 			}
 		});
 		
+		helpTitle = "Altering the colour";
+		helpBody = "This step allows you to fine tune the properties of the colour so that you can get the exact colour" +
+				"that you want.";
 	}
 	
 	public void selectColour() {

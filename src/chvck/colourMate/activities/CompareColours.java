@@ -45,6 +45,10 @@ public class CompareColours extends ColourActivity {
 	        });
 	    	ll.addView(imageView);
 	    }
+		
+		helpTitle = "Comparing Colours";
+		helpBody = "These colours are the ones from the selected scheme, select a colour to view more information " +
+				"about it.";
 	}
 	
 	private void setViewColour(ImageView view, int colour) {
