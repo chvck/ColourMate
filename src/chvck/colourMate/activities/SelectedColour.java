@@ -58,10 +58,11 @@ public class SelectedColour extends ColourActivity {
 
 		//work out what base colour it is
 		String actualColour = "";
-		if (hsv[0] == 0) {
+		if (colour == Color.BLACK) {
 			actualColour = "It's Black!";
-		}
-		else if (hsv[0] >=1 && hsv[0] <60) {
+		} else if (colour == Color.WHITE) {
+			actualColour = "It's White!";
+		} else if (hsv[0] >=1 && hsv[0] <60) {
 			actualColour = "Red";
 		} else if (hsv[0] >=60 && hsv[0] <120) {
 			actualColour = "Yellow";

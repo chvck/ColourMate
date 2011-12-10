@@ -204,22 +204,22 @@ public class ColourMateCamera extends Activity {
 
 			int imgWidth = bitmap.getWidth();
 			int imgHeight = bitmap.getHeight();
-
+									
 			float xScale = (float) imgWidth / previewWidth;
 			float yScale = (float) imgHeight / previewHeight;
 
 			//0,0 top left I think
-			float xDistanceFromCentre = (20 * xScale);
-			float yDistanceFromCentre = (20 * yScale);
+			float xDistanceFromCentre = (preview.getHorizontalDistance() * xScale);
+			float yDistanceFromCentre = (preview.getVerticallDistance() * yScale);
 
 			int x = (int) ((imgWidth/2) - xDistanceFromCentre); 
 			int y = (int) ((imgHeight/2) - yDistanceFromCentre); 
 			int width = (int) ((imgWidth/2) + xDistanceFromCentre) - x;
 			int height = (int) ((imgHeight/2) + yDistanceFromCentre) - y;
 			int stride = width;
+						
 			int[] colours = new int[width * height];
 			bitmap.getPixels(colours, 0, stride, x, y, width, height);
-
 
 			//create a hashtable (histogram) of colours and their frequencies
 			HashMap<Integer, Integer> colourFreq = new HashMap<Integer, Integer>();

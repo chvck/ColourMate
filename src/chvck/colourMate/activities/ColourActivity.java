@@ -48,7 +48,7 @@ public class ColourActivity extends Activity {
 	
 	protected void loadHelp(Context contextParam) {
 		Intent intent = new Intent();
-		intent.setClass(contextParam, chvck.colourMate.activities.ColourMateCamera.class);
+		intent.setClass(contextParam, chvck.colourMate.activities.Help.class);
 		intent.putExtra("title", helpTitle);
 		intent.putExtra("body", helpBody);
 		contextParam.startActivity(intent);

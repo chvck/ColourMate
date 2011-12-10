@@ -13,7 +13,9 @@ import android.view.SurfaceView;
 public class Preview extends SurfaceView implements SurfaceHolder.Callback { 
 	protected final Paint rectanglePaint = new Paint();
 	SurfaceHolder mHolder;  
-	public Camera camera; 
+	public Camera camera;
+	private float horizontalDistance;
+	private float verticalDistance;
 
 	public Preview(Context context) {
 		super(context);
@@ -64,7 +66,15 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback {
 		camera.setParameters(parameters);
 		camera.startPreview();
 	}
+	
+	public float getHorizontalDistance(){
+		return horizontalDistance;
+	}
 
+	public float getVerticallDistance(){
+		return verticalDistance;
+	}
+	
 	@Override
 	protected void onDraw(Canvas canvas){
 		//work out where we need to draw our little square area
@@ -74,27 +84,35 @@ public class Preview extends SurfaceView implements SurfaceHolder.Callback {
 		rectanglePaint.setStyle(Style.STROKE);
 		rectanglePaint.setARGB(150, 0, 255, 0);
 
-		int left = (width/2)-20; 
-		int right = (width/2)+20; 
-		int top = (height/2)-20; 
-		int bottom = (height/2)+20;
-
+		horizontalDistance = (float) width / 10;
+		verticalDistance = (float) height / 10 ;
+		
+		float halfWidth =  (float) width / 2;
+		float halfHeight = (float) height / 2;
+		float halfHorizontalDistance = (float) horizontalDistance / 2;
+		float halfVerticalDistance = (float) verticalDistance / 2;
+				
+		float left = halfWidth - horizontalDistance; 
+		float right = halfWidth + horizontalDistance; 
+		float top = halfHeight - verticalDistance; 
+		float bottom = halfHeight + verticalDistance;
+		
 		//draw it
 		//top left
-		canvas.drawLine(left, top+10, left, top, rectanglePaint);
-		canvas.drawLine(left, top, left+10, top, rectanglePaint);
+		canvas.drawLine(left, top + halfVerticalDistance, left, top, rectanglePaint);
+		canvas.drawLine(left, top, left + halfHorizontalDistance, top, rectanglePaint);
 
 		//bottom left
-		canvas.drawLine(left, bottom, left, bottom-10, rectanglePaint);
-		canvas.drawLine(left, bottom, left+10, bottom, rectanglePaint);
+		canvas.drawLine(left, bottom, left, bottom - halfVerticalDistance, rectanglePaint);
+		canvas.drawLine(left, bottom, left + halfHorizontalDistance, bottom, rectanglePaint);
 
 		//top right
-		canvas.drawLine(right, top+10, right, top, rectanglePaint);
-		canvas.drawLine(right-10, top, right, top, rectanglePaint);
+		canvas.drawLine(right, top + halfVerticalDistance, right, top, rectanglePaint);
+		canvas.drawLine(right - halfHorizontalDistance, top, right, top, rectanglePaint);
 
 		//bottom right
-		canvas.drawLine(right, bottom, right, bottom-10, rectanglePaint);
-		canvas.drawLine(right-10, bottom, right, bottom, rectanglePaint);
+		canvas.drawLine(right, bottom, right, bottom - halfVerticalDistance, rectanglePaint);
+		canvas.drawLine(right - halfHorizontalDistance, bottom, right, bottom, rectanglePaint);
 
 	}
 

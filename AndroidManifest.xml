@@ -24,6 +24,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.Help" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="chvck.ColourMate.Activites.Help" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.AlterColour" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="chvck.ColourMate.Activites.AlterColour" />
