@@ -36,11 +36,11 @@ public class PickColour extends ColourActivity {
 		gridView.setAdapter(new ButtonAdapter(this));   
 		
 		helpTitle = "Picking a colour";
-		helpBody = "The most prominent colours in the picture have been detected for you to select the one" +
-				"that closes matches the colour that you want.\n Don't worry if no colours qute match what you are" +
+		helpBody = "The most prominent colours in the picture have been detected for you to select the one " +
+				"that closes matches the colour that you want.\n Don't worry if no colours quite match what you are " +
 				"after, you can alter the colour in the next step!";
 	}
-
+	
 	public void selectColour(int colour) {
 		Intent intent = new Intent();
 		intent.setClass(this, chvck.colourMate.activities.AlterColour.class);

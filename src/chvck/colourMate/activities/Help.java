@@ -10,16 +10,17 @@ public class Help extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    
-	    TextView title = (TextView) findViewById(R.id.help_title);
-	    TextView body = (TextView) findViewById(R.id.help_body);
-	    
+
+	    setContentView(R.layout.help);
+
 	    Bundle extras = getIntent().getExtras();
 	    String titleText = extras.getString("title");
 	    String bodyText = extras.getString("body");
+   
+	    TextView titleView = (TextView) findViewById(R.id.help_title);
+	    TextView bodyView = (TextView) findViewById(R.id.help_body);
 	    
-	    title.setText(titleText);
-	    body.setText(bodyText);
-	}
-	
+	    titleView.setText(titleText);    
+	    bodyView.setText(bodyText);
+	}		
 }

@@ -1,7 +1,6 @@
 package chvck.colourMate.activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,7 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import chvck.colourMate.R;
 
-public class ColourActivity extends Activity {
+public abstract class ColourActivity extends Activity {
 	protected String helpTitle;
 	protected String helpBody;
 	
@@ -29,28 +28,28 @@ public class ColourActivity extends Activity {
 		// Handle item selection
 		switch (item.getItemId()) {
 			case R.id.new_colour:
-				newColour(this);
+				newColour();
 				return true;
 			case R.id.help:
-				loadHelp(this);
+				loadHelp();
 				return true;
 		    default:
 		        return super.onOptionsItemSelected(item);
 		}
 	}
-	
-	protected void newColour(Context contextParam){
+		
+	protected void newColour(){
 		Intent intent = new Intent();
-		intent.setClass(contextParam, chvck.colourMate.activities.ColourMateCamera.class);
+		intent.setClass(this, chvck.colourMate.activities.ColourMateCamera.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		contextParam.startActivity(intent);
+		this.startActivity(intent);
 	}
 	
-	protected void loadHelp(Context contextParam) {
+	protected void loadHelp() {
 		Intent intent = new Intent();
-		intent.setClass(contextParam, chvck.colourMate.activities.Help.class);
+		intent.setClass(this, chvck.colourMate.activities.Help.class);
 		intent.putExtra("title", helpTitle);
 		intent.putExtra("body", helpBody);
-		contextParam.startActivity(intent);
+		this.startActivity(intent);
 	}
 }
