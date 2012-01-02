@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -23,6 +24,7 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -46,6 +48,8 @@ public class ColourMateCamera extends Activity {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
+		
+		//need to go full screen to fix an issue relating to aspect ratio on some devices
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -53,6 +57,7 @@ public class ColourMateCamera extends Activity {
 		//setup the surface for the camera preview
 		preview = new Preview(this);
 		((FrameLayout) findViewById(R.id.preview)).addView(preview);
+		
 		//setup to receive battery level
 		this.registerReceiver(this.mBatInfoReceiver, 
 			    new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -61,19 +66,22 @@ public class ColourMateCamera extends Activity {
 		//make it look pretty by adding transparency
 		flashButton.setAlpha(150);
 		flashButton.setFocusable(false);
-
+		
 		//setup the onClick
 		flashButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) { 
+			public void onClick(View v) {
+				final Resources r = getResources();
 				if (flash) {
 					flash = false;
 					flashButton.setBackgroundResource(R.drawable.no_flash);
+					flashButton.setContentDescription(r.getString(R.string.turn_flash_on));
 				} else {
 					if (level <= 15) {
 						showDialog(1);
 					}
 					flash = true;
 					flashButton.setBackgroundResource(R.drawable.flash);
+					flashButton.setContentDescription(r.getString(R.string.turn_flash_off));
 				}
 			}
 		});

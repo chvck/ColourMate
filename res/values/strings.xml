@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, ColourMateActivity!</string>
     <string name="app_name">Colour Mate</string>
     <string name="colour_info">Colour Information</string>
     <string name="colours_detected">Please select a colour:</string>
+    <string name="button_capture">Capture</string>
+    <string name="turn_flash_on">Turn flash on</string>
+    <string name="turn_flash_off">Turn flash off</string>
 </resources>
