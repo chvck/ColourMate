@@ -11,12 +11,12 @@
             <TextView android:layout_width="fill_parent"
                 android:id="@+id/help_title" 
                 android:textAppearance="?android:attr/textAppearanceMedium" 
-                android:text="" android:gravity="center_horizontal" android:layout_height="wrap_content">
+                android:text="Title" android:gravity="center_horizontal" android:layout_height="wrap_content">
             </TextView>
             <TextView android:layout_width="fill_parent"
                 android:id="@+id/help_body" 
                 android:textAppearance="?android:attr/textAppearanceSmall" 
-                android:text="" android:gravity="center_horizontal" android:layout_height="wrap_content">
+                android:text="Body" android:gravity="center_horizontal" android:layout_height="wrap_content">
             </TextView>
     </LinearLayout>
 </ScrollView>
