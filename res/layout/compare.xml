@@ -7,20 +7,27 @@
     <LinearLayout 
         android:orientation="vertical"  
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content">
             <TextView android:layout_width="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium" 
-                android:text="Compare Colours" android:gravity="center_horizontal" android:layout_height="wrap_content">
+                android:text="@string/compare_colours" android:gravity="center_horizontal" android:layout_height="wrap_content">
             </TextView>
             <TextView android:layout_width="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceSmall" 
-                android:text="Select a colour to view info" android:gravity="center_horizontal" android:layout_height="wrap_content">
+                android:text="@string/compare_select" android:gravity="center_horizontal" android:layout_height="wrap_content">
             </TextView>
 		    <LinearLayout 
 		        android:orientation="horizontal"  
 		        android:layout_width="fill_parent"
 		        android:layout_height="fill_parent" android:layout_gravity="center|center_horizontal" android:gravity="center_horizontal" android:layout_marginTop="10dip">
-		        <ImageView android:layout_height="wrap_content" android:src="@drawable/white_background" android:id="@+id/originalColourView" android:layout_width="wrap_content" android:layout_gravity="center|center_horizontal"></ImageView>
+		        <ImageView 
+		            android:layout_height="wrap_content" 
+		            android:src="@drawable/white_background" 
+		            android:id="@+id/originalColourView" 
+		            android:layout_width="wrap_content" 
+		            android:layout_gravity="center|center_horizontal"
+		            android:contentDescription="@string/compare_original_colour" >
+		        </ImageView>
 	        </LinearLayout>
             <LinearLayout 
                 android:orientation="horizontal"

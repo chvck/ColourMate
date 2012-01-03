@@ -9,7 +9,7 @@
                 android:layout_width="wrap_content" 
                 android:id="@+id/selectLabel" 
                 android:textAppearance="?android:attr/textAppearanceMedium" 
-                android:text="Please select a colour" 
+                android:text="@string/alter_select_colour" 
                 android:layout_height="wrap_content" 
                 android:gravity="center_horizontal" 
                 android:layout_gravity="center_horizontal">

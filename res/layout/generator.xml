@@ -9,20 +9,22 @@
 	    android:orientation="vertical"
 	    android:id="@+id/generator_layout"  
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent">
+	    android:layout_height="wrap_content">
 	        <TextView android:layout_width="fill_parent"
 	            android:textAppearance="?android:attr/textAppearanceSmall" 
-	            android:text="Selected colour" android:gravity="center_horizontal" android:layout_height="wrap_content">
+	            android:text="@string/generator_selected_colour" android:gravity="center_horizontal" android:layout_height="wrap_content">
 	        </TextView>
 	        <ImageView 
 	            android:layout_width="100dip" 
 	            android:layout_height="50dip" 
 	            android:id="@+id/generator_box"  
-	            android:layout_gravity="center_horizontal" android:layout_margin="5dip">
+	            android:layout_gravity="center_horizontal" 
+	            android:layout_margin="5dip"
+	            android:contentDescription="@string/generator_selected_colour" >
 	        </ImageView>
             <TextView android:layout_width="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceSmall" 
-                android:text="Please select a colour for more info" android:gravity="center_horizontal" android:layout_height="wrap_content">
+                android:text="@string/generator_more_info" android:gravity="center_horizontal" android:layout_height="wrap_content">
             </TextView>
 	</LinearLayout>
 </ScrollView>

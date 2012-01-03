@@ -2,8 +2,35 @@
 <resources>
     <string name="app_name">Colour Mate</string>
     <string name="colour_info">Colour Information</string>
-    <string name="colours_detected">Please select a colour:</string>
     <string name="button_capture">Capture</string>
     <string name="turn_flash_on">Turn flash on</string>
     <string name="turn_flash_off">Turn flash off</string>
+    <string name="alter_colour">Alter Colour</string>
+    <string name="alter_colour_hue">Hue</string>
+    <string name="alter_colour_saturation">Saturation</string>
+    <string name="alter_colour_value">Value</string>
+    <string name="alter_colour_use_colour">Use Colour</string>
+    <string name="compare_colours">Compare Colours</string>
+    <string name="compare_select">Select a colour to view info</string>
+    <string name="generator_selected_colour">Selected Colour</string>
+    <string name="generator_more_info">Please select a colour for more info</string>
+    <string name="help_title">Title</string>
+    <string name="help_body">Body</string>
+    <string name="alter_select_colour">Please select a colour</string>
+    <string name="schemes_select_generator">Please select a scheme generator</string>
+    <string name="schemes_long_press">Long press a scheme for details</string>
+    <string name="selected_base_colour">Base Colour:</string>
+    <string name="selected_hex_value">Hex value:</string>
+    <string name="selected_rgb_value">RGB value:</string>
+    <string name="selected_hsv_value">HSV value:</string>
+    <string name="selected_colour_int_value">Colour int value:</string>
+    <string name="selected_select_scheme">Select Scheme Generator</string>
+    <string name="alter_current_colour">Current Colour</string>
+    <string name="alter_decrease_hue">Decrease Hue</string>
+    <string name="alter_increase_hue">Increase Hue</string>
+    <string name="alter_decrease_saturation">Decrease Saturation</string>
+    <string name="alter_increase_saturation">Increase Saturation</string>
+    <string name="alter_decrease_value">Decrease Value</string>
+    <string name="selected_selected_colour">Selected Colour</string>
+    <string name="compare_original_colour">Original Colour</string>
 </resources>

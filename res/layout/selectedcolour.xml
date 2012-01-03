@@ -6,7 +6,7 @@
   <TableLayout 
       android:orientation="vertical"
       android:layout_width="fill_parent"
-      android:layout_height="fill_parent">
+      android:layout_height="wrap_content">
         <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip">
 		    <TextView android:layout_width="fill_parent" android:id="@+id/textView1" 
 		        android:textAppearance="?android:attr/textAppearanceMedium" 
@@ -18,7 +18,8 @@
 	            android:layout_marginTop="7dip"
 	            android:layout_width="100dip" 
 	            android:layout_height="50dip" 
-	            android:id="@+id/colourBox" >
+	            android:id="@+id/colourBox" 
+	            android:contentDescription="@string/selected_selected_colour" >
 	        </ImageView>
 	    </TableRow>		    
             <TableRow android:gravity="center_horizontal" android:layout_marginTop="7dip">
@@ -26,7 +27,7 @@
                     android:layout_width="100dip" 
                     android:id="@+id/baseLabel" 
                     android:textAppearance="?android:attr/textAppearanceSmall" 
-                    android:text="Base Colour:" 
+                    android:text="@string/selected_base_colour" 
                     android:layout_height="wrap_content" >
                 </TextView>
                 <TextView 
@@ -43,7 +44,7 @@
 		            android:layout_width="100dip" 
 		            android:id="@+id/hexLabel" 
 		            android:textAppearance="?android:attr/textAppearanceSmall" 
-		            android:text="Hex value:"  
+		            android:text="@string/selected_hex_value"  
 		            android:layout_height="wrap_content" >
 		        </TextView>
 	            <TextView 
@@ -60,7 +61,7 @@
                     android:layout_width="100dip" 
                     android:id="@+id/rgbLabel" 
                     android:textAppearance="?android:attr/textAppearanceSmall" 
-                    android:text="RGB value:" >
+                    android:text="@string/selected_rgb_value" >
                 </TextView>
                 <TextView 
                     android:layout_width="fill_parent" 
@@ -76,7 +77,7 @@
                     android:layout_width="100dip" 
                     android:id="@+id/hsvLabel" 
                     android:textAppearance="?android:attr/textAppearanceSmall" 
-                    android:text="HSV value:" 
+                    android:text="@string/selected_hsv_value" 
                     android:layout_height="wrap_content">
                 </TextView>
                 <TextView 
@@ -93,7 +94,7 @@
                     android:layout_width="100dip" 
                     android:id="@+id/intLabel" 
                     android:textAppearance="?android:attr/textAppearanceSmall" 
-                    android:text="Colour int value:" 
+                    android:text="@string/selected_colour_int_value" 
                     android:layout_height="wrap_content">
                 </TextView>
                 <TextView 
@@ -109,7 +110,7 @@
                     android:id="@+id/selectGenerators"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:text="Select Scheme Generator" android:layout_marginTop="7dip">
+                    android:text="@string/selected_select_scheme" android:layout_marginTop="7dip">
                 </Button>
             </TableRow>
     </TableLayout>

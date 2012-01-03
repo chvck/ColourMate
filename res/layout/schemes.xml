@@ -8,7 +8,7 @@
        <TextView
             android:layout_width="wrap_content" 
             android:textAppearance="?android:attr/textAppearanceMedium" 
-            android:text="Please select a scheme generator" 
+            android:text="@string/schemes_select_generator" 
             android:layout_height="wrap_content" 
             android:gravity="center_horizontal" 
             android:layout_gravity="center_horizontal">
@@ -16,7 +16,7 @@
        <TextView
             android:layout_width="wrap_content" 
             android:textAppearance="?android:attr/textAppearanceSmall" 
-            android:text="Long press a scheme for details" 
+            android:text="@string/schemes_long_press" 
             android:layout_height="wrap_content" 
             android:gravity="center_horizontal" 
             android:layout_gravity="center_horizontal">

@@ -82,11 +82,38 @@ public final class R {
         public static final int popup=0x7f050000;
     }
     public static final class string {
+        public static final int alter_colour=0x7f040005;
+        public static final int alter_colour_hue=0x7f040006;
+        public static final int alter_colour_saturation=0x7f040007;
+        public static final int alter_colour_use_colour=0x7f040009;
+        public static final int alter_colour_value=0x7f040008;
+        public static final int alter_current_colour=0x7f040019;
+        public static final int alter_decrease_hue=0x7f04001a;
+        public static final int alter_decrease_saturation=0x7f04001c;
+        public static final int alter_decrease_value=0x7f04001e;
+        public static final int alter_increase_hue=0x7f04001b;
+        public static final int alter_increase_saturation=0x7f04001d;
+        public static final int alter_select_colour=0x7f040010;
         public static final int app_name=0x7f040000;
-        public static final int button_capture=0x7f040003;
+        public static final int button_capture=0x7f040002;
         public static final int colour_info=0x7f040001;
-        public static final int colours_detected=0x7f040002;
-        public static final int turn_flash_off=0x7f040005;
-        public static final int turn_flash_on=0x7f040004;
+        public static final int compare_colours=0x7f04000a;
+        public static final int compare_original_colour=0x7f040020;
+        public static final int compare_select=0x7f04000b;
+        public static final int generator_more_info=0x7f04000d;
+        public static final int generator_selected_colour=0x7f04000c;
+        public static final int help_body=0x7f04000f;
+        public static final int help_title=0x7f04000e;
+        public static final int schemes_long_press=0x7f040012;
+        public static final int schemes_select_generator=0x7f040011;
+        public static final int selected_base_colour=0x7f040013;
+        public static final int selected_colour_int_value=0x7f040017;
+        public static final int selected_hex_value=0x7f040014;
+        public static final int selected_hsv_value=0x7f040016;
+        public static final int selected_rgb_value=0x7f040015;
+        public static final int selected_select_scheme=0x7f040018;
+        public static final int selected_selected_colour=0x7f04001f;
+        public static final int turn_flash_off=0x7f040004;
+        public static final int turn_flash_on=0x7f040003;
     }
 }
